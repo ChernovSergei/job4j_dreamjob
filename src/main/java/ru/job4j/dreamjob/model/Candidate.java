@@ -1,27 +1,26 @@
 package ru.job4j.dreamjob.model;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Candidate {
-    private Integer id;
+    private int id;
     private String name;
     private String description;
-    private LocalDate createdDate;
+    private LocalDateTime createdDate;
 
-    public Candidate(Integer id, String name, String description, LocalDate createdDate) {
+    public Candidate(Integer id, String name, String description, LocalDateTime createdDate) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.createdDate = createdDate;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,19 +40,24 @@ public class Candidate {
         this.description = description;
     }
 
-    public LocalDate getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
     @Override
     public boolean equals(Object object) {
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         Candidate candidate = (Candidate) object;
-        return Objects.equals(id, candidate.id) && Objects.equals(name, candidate.name) && Objects.equals(description, candidate.description) && Objects.equals(createdDate, candidate.createdDate);
+        return id == ((Candidate) object).getId();
     }
 
     @Override

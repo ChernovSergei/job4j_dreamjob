@@ -1,27 +1,36 @@
 package ru.job4j.dreamjob.repository;
 
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.model.Vacancy;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
-public class MemoryCandidateRepository implements CandidateRepository{
+public class MemoryCandidateRepository implements CandidateRepository {
 
     private static final MemoryCandidateRepository INSTANCE = new MemoryCandidateRepository();
     private int nextId = 1;
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
     public MemoryCandidateRepository() {
-        save( new Candidate(0, "George", "Engineer", LocalDate.now()));
-        save( new Candidate(0, "Mihai", "Doctor", LocalDate.now()));
-        save( new Candidate(0, "Yulia", "Teacher", LocalDate.of(1986, 4, 15)));
-        save( new Candidate(0, "Anton", "Shopper", LocalDate.now()));
-        save( new Candidate(0, "Evgenia", "Pilot", LocalDate.of(1940, 1, 29)));
+        save(new Candidate(0, "George",
+                "Go",
+                LocalDateTime.of(2025, 12, 31, 23, 59)));
+        save(new Candidate(0, "Mihai",
+                "Basic",
+                LocalDateTime.of(2004, 11, 27, 3, 15)));
+        save(new Candidate(0, "Yulia",
+                "Java Developer",
+                LocalDateTime.of(2024, 4, 15, 12, 1)));
+        save(new Candidate(0, "Anton",
+                "Angular Developer",
+                LocalDateTime.of(2017, 5, 27, 12, 4)));
+        save(new Candidate(0, "Evgenia",
+                "C++",
+                LocalDateTime.of(2022, 1, 29, 3, 15)));
     }
 
-
-    public static MemoryCandidateRepository getInstance () {
+    public static MemoryCandidateRepository getInstance() {
         return INSTANCE;
     }
 
