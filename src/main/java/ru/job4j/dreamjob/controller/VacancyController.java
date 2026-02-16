@@ -3,7 +3,6 @@ package ru.job4j.dreamjob.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.dreamjob.service.SimpleVacancyService;
 import ru.job4j.dreamjob.model.Vacancy;
 import ru.job4j.dreamjob.service.VacancyService;
 
@@ -11,7 +10,11 @@ import ru.job4j.dreamjob.service.VacancyService;
 @RequestMapping("/vacancies")
 public class VacancyController {
 
-    private final VacancyService vacancyService = SimpleVacancyService.getInstance();
+    private final VacancyService vacancyService;
+
+    public VacancyController(VacancyService vacancyService) {
+        this.vacancyService = vacancyService;
+    }
 
     @GetMapping
     public String getAll(Model model) {

@@ -1,10 +1,11 @@
 package ru.job4j.dreamjob.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Vacancy;
-
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Repository
 public class MemoryVacancyRepository implements VacancyRepository {
 
     private static final MemoryVacancyRepository INSTANCE = new MemoryVacancyRepository();
@@ -31,10 +32,6 @@ public class MemoryVacancyRepository implements VacancyRepository {
         save(new Vacancy(0, "Senior Java Developer",
                 "You will be alone in the building and making money",
                 LocalDateTime.of(1996, 8, 11, 9, 30)));
-    }
-
-    public static MemoryVacancyRepository getInstance() {
-        return INSTANCE;
     }
 
     @Override
