@@ -1,4 +1,6 @@
-package ru.job4j.dreamjob.model;
+package ru.job4j.dreamjob.service;
+
+import ru.job4j.dreamjob.model.Vacancy;
 
 import java.util.Collection;
 import java.util.Optional;

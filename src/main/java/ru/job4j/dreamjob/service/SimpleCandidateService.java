@@ -1,8 +1,8 @@
-package ru.job4j.dreamjob.model;
+package ru.job4j.dreamjob.service;
 
+import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.repository.CandidateRepository;
 import ru.job4j.dreamjob.repository.MemoryCandidateRepository;
-import ru.job4j.dreamjob.repository.MemoryVacancyRepository;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -13,7 +13,7 @@ public class SimpleCandidateService implements CandidateService {
 
     private final CandidateRepository candidateRepository = MemoryCandidateRepository.getInstance();
 
-    public SimpleCandidateService() {
+    private SimpleCandidateService() {
     }
 
     public static CandidateService getInstance() {

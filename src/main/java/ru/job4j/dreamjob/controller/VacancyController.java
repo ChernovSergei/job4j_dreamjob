@@ -3,9 +3,9 @@ package ru.job4j.dreamjob.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.dreamjob.model.SimpleVacancyService;
+import ru.job4j.dreamjob.service.SimpleVacancyService;
 import ru.job4j.dreamjob.model.Vacancy;
-import ru.job4j.dreamjob.model.VacancyService;
+import ru.job4j.dreamjob.service.VacancyService;
 
 @Controller
 @RequestMapping("/vacancies")

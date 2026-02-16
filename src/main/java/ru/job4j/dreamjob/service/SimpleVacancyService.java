@@ -1,5 +1,6 @@
-package ru.job4j.dreamjob.model;
+package ru.job4j.dreamjob.service;
 
+import ru.job4j.dreamjob.model.Vacancy;
 import ru.job4j.dreamjob.repository.MemoryVacancyRepository;
 import ru.job4j.dreamjob.repository.VacancyRepository;
 import java.util.Collection;
@@ -11,7 +12,7 @@ public class SimpleVacancyService implements VacancyService {
 
     private final VacancyRepository vacancyRepository = MemoryVacancyRepository.getInstance();
 
-    public SimpleVacancyService() {
+    private SimpleVacancyService() {
     }
 
     public static VacancyService getInstance() {
