@@ -72,7 +72,6 @@
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>8.42</version>
                     </dependency>
                 </dependencies>
                 <executions>

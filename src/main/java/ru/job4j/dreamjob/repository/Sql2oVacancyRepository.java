@@ -1,10 +1,14 @@
 package ru.job4j.dreamjob.repository;
 
+import net.jcip.annotations.ThreadSafe;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.job4j.dreamjob.model.Vacancy;
 import java.util.Collection;
 import java.util.Optional;
 
+@Repository
+@ThreadSafe
 public class Sql2oVacancyRepository implements VacancyRepository {
 
     private final Sql2o sql2o;
@@ -18,7 +22,7 @@ public class Sql2oVacancyRepository implements VacancyRepository {
         try (var connection = sql2o.open()) {
             var sql = """
                     INSERT INTO vacancies(title, description, creation_date, visible, city_id, file_id)
-                    VALUES (:title, :description, :creationDate, :visible, :cityId, :fieldId)
+                    VALUES (:title, :description, :creationDate, :visible, :cityId, :fileId)
                     """;
             var query = connection.createQuery(sql, true)
                     .addParameter("title", vacancy.getTitle())
@@ -38,9 +42,9 @@ public class Sql2oVacancyRepository implements VacancyRepository {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("DELETE FROM vacancies WHERE id = :id");
             query.addParameter("id", id);
-            query.executeUpdate();
+            var rows = query.executeUpdate().getResult();
+            return rows > 0;
         }
-        return true;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class Sql2oVacancyRepository implements VacancyRepository {
         try (var connection = sql2o.open()) {
             var sql = """
                     UPDATE vacancies
-                    SET title = :title, description =: description, creation_date := creationDate,
+                    SET title = :title, description = :description, creation_date = :creationDate,
                     visible = :visible, city_id = :cityId, file_id = :fileId
                     WHERE id = :id
                     """;
@@ -58,7 +62,8 @@ public class Sql2oVacancyRepository implements VacancyRepository {
                     .addParameter("creationDate", vacancy.getCreationDate())
                     .addParameter("visible", vacancy.getVisible())
                     .addParameter("cityId", vacancy.getCityId())
-                    .addParameter("fileId", vacancy.getFileId());
+                    .addParameter("fileId", vacancy.getFileId())
+                    .addParameter("id", vacancy.getId());
             var affectedRows = query.executeUpdate().getResult();
             return affectedRows > 0;
         }
