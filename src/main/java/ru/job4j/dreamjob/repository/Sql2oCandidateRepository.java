@@ -59,7 +59,7 @@ public class Sql2oCandidateRepository implements CandidateRepository {
             var query = connection.createQuery(sql, true)
                     .addParameter("name", candidate.getName())
                     .addParameter("description", candidate.getDescription())
-                    .addParameter("creationDate", candidate.getCreatedDate())
+                    .addParameter("createdDate", candidate.getCreatedDate())
                     .addParameter("fileId", candidate.getFileId())
                     .addParameter("id", candidate.getId());
             var affectedRows = query.executeUpdate().getResult();
