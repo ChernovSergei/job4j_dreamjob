@@ -54,7 +54,9 @@ public class Sql2oVacancyRepository implements VacancyRepository {
                     UPDATE vacancies
                     SET title = :title, description = :description, creation_date = :creationDate,
                     visible = :visible, city_id = :cityId, file_id = :fileId
-                    WHERE id = :id
+                    WHERE id = :id AND (title <> :title OR description <> :description
+                    OR creation_date <> :creationDate OR visible <> :visible OR city_id <> :cityId
+                    OR file_id <> :fileId)
                     """;
             var query = connection.createQuery(sql, true)
                     .addParameter("title", vacancy.getTitle())

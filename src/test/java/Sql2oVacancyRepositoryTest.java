@@ -45,7 +45,7 @@ public class Sql2oVacancyRepositoryTest {
 
         //we create at least one file as soon as vacancy depends on file
         file = new File("test", "test");
-        sql2oFileRepository.deleteById(file.getId());
+        sql2oFileRepository.save(file);
     }
 
     @AfterAll
@@ -116,6 +116,7 @@ public class Sql2oVacancyRepositoryTest {
         );
         var isUpdated = sql2oVacancyRepository.update(updatedVacancy);
         var savedVacancy = sql2oVacancyRepository.findById(updatedVacancy.getId()).get();
+        assertThat(isUpdated).isTrue();
         assertThat(savedVacancy).usingRecursiveComparison().isEqualTo(updatedVacancy);
     }
 
