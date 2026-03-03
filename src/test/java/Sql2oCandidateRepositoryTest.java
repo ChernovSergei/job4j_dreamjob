@@ -123,8 +123,8 @@ public class Sql2oCandidateRepositoryTest {
     @Test
     public void whenUpdateUnExistingCandidateThenGetFalse() {
         var creationDate = now().truncatedTo(ChronoUnit.MINUTES);
-        var candidate = sql2oCandidateRepository.save(new Candidate(0, "name", "description",
-                creationDate, file.getId()));
+        var candidate = new Candidate(0, "name", "description",
+                creationDate, file.getId());
         var isUpdated = sql2oCandidateRepository.update(candidate);
         assertThat(isUpdated).isFalse();
     }

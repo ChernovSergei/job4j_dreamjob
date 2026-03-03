@@ -123,8 +123,8 @@ public class Sql2oVacancyRepositoryTest {
     @Test
     public void whenUpdateUnExistingVacancyThenGetFalse() {
         var creationDate = now().truncatedTo(ChronoUnit.MINUTES);
-        var vacancy = sql2oVacancyRepository.save(new Vacancy(0, "title", "description",
-                creationDate, true, 1, file.getId()));
+        var vacancy = new Vacancy(0, "title", "description",
+                creationDate, true, 1, file.getId());
         var isUpdated = sql2oVacancyRepository.update(vacancy);
         assertThat(isUpdated).isFalse();
     }

@@ -54,8 +54,7 @@ public class Sql2oCandidateRepository implements CandidateRepository {
                     UPDATE candidates
                     SET name = :name, description = :description, created_date = :createdDate,
                     file_id = :fileId
-                    WHERE id = :id AND (name <> :name OR description <> :description
-                    OR created_date <> :createdDate OR file_id <> :fileId)
+                    WHERE id = :id
                     """;
             var query = connection.createQuery(sql, true)
                     .addParameter("name", candidate.getName())
