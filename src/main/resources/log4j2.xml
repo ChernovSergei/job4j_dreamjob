@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- FILE APPENDER -->
+        <File name="DreamJobLog" fileName="logs/File.log">
+            <PatternLayout pattern="File Appender: %d %p %c{2} %m %n" />
+        </File>
+    </Appenders>
+    <Loggers>
+        <!-- LOGGER -->
+        <Logger name="ru.job4j.dreamjob.repository" level="info">
+            <AppenderRef ref="DreamJobLog" />
+        </Logger>
+        <Root level="info"></Root>
+    </Loggers>
+</Configuration>
