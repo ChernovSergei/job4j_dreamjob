@@ -1,11 +1,10 @@
 package ru.job4j.dreamjob.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import ru.job4j.dreamjob.dto.FileDto;
-import ru.job4j.dreamjob.model.Candidate;
+import org.springframework.dao.DuplicateKeyException;
 import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.UserService;
 
@@ -26,12 +25,13 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute User user, Model model) {
-        var savedUser = userService.save(user);
-        if (savedUser.isEmpty()) {
-            model.addAttribute("message", "The user with the same email exists");
-            return "errors/404";
-        }
+        userService.save(user);
         return "redirect:/vacancies";
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ResponseEntity<String> handleIllegalArgument(DuplicateKeyException e) {
+        return ResponseEntity.status(500).body(e.getMessage());
     }
 
     @GetMapping("/login")
