@@ -33,7 +33,7 @@ public class Sql2oUserRepository implements UserRepository {
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
         } catch (Sql2oException e) {
-            log.error(e.getMessage());
+            log.error("User saving error", e.getMessage());
             for (Throwable exception = e; exception != null; exception = exception.getCause()) {
                 if (exception instanceof PSQLException psqlException) {
                     sqlState = psqlException.getSQLState();
