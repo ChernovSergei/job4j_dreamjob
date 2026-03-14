@@ -39,7 +39,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String getLoginPage() {
-        return "user/login";
+        return "users/login";
     }
 
     @PostMapping("/login")
@@ -47,7 +47,7 @@ public class UserController {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
             model.addAttribute("error", "Email or password are not correct");
-            return "user/login";
+            return "users/login";
         }
         return "redirect:/vacancies";
     }
