@@ -50,7 +50,6 @@ public class VacancyController {
             user.setName("Guest");
         }
         model.addAttribute("user", user);
- 
         model.addAttribute("cities", cityService.findAll());
         return "vacancies/create";
     }

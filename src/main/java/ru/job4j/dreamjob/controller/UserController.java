@@ -54,7 +54,6 @@ public class UserController {
             user.setName("Guest");
         }
         model.addAttribute("user", user);
-
         return "users/login";
     }
 
