@@ -4,6 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.UserService;
 
@@ -43,12 +46,20 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user, Model model) {
+    public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
             model.addAttribute("error", "Email or password are not correct");
             return "users/login";
         }
+        var session = request.getSession();
+        session.setAttribute("user", userOptional.get());
         return "redirect:/vacancies";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/users/login";
     }
 }
