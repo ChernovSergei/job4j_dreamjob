@@ -1,6 +1,4 @@
-import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -114,8 +112,5 @@ public class UserControllerTest {
         assertThat(actualUserName).isEqualTo(user.getEmail());
         assertThat(actualUserPassword).isEqualTo(user.getPassword());
         assertThat(errorMessage).isEqualTo(model.get("error"));
-
     }
-
-
 }
